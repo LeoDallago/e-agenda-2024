@@ -26,14 +26,68 @@ namespace eAgenda.WinApp.ModuloContato
 
             DialogResult resultado = telaContato.ShowDialog();
 
-            if (resultado == DialogResult.OK)
-            {
-                Contato novoContato = telaContato.Contato;
+            // Guarda
+            if (resultado != DialogResult.OK)
+                return;
+            
+             Contato novoContato = telaContato.Contato;
 
-                repositorioContato.Cadastrar(novoContato);
+             repositorioContato.Cadastrar(novoContato);
 
-                CarregarContatos();
-            }
+             CarregarContatos();
+
+            TelaPrincipalForm
+                .Instancia
+                .AtualizarRodape("Cadastro ADICIONADO com sucesso!");
+        }
+
+
+        public override void Editar()
+        {
+            TelaContatoForm telaContato = new TelaContatoForm();
+
+            Contato contatoSelecionado = listagemContato.ObterRegistroSelecionado();
+
+            telaContato.Contato = contatoSelecionado;
+
+            DialogResult resultado = telaContato.ShowDialog();
+
+            //Guarda
+            if(resultado != DialogResult.OK) 
+                return;
+
+            Contato contadoEditado = telaContato.Contato;
+
+            repositorioContato.Editar(contatoSelecionado.Id, contadoEditado);
+
+            CarregarContatos();
+
+            TelaPrincipalForm
+                .Instancia
+                .AtualizarRodape($"Cadastro \"{contatoSelecionado.Id}\" , \"{contadoEditado.Nome}\" editado com sucesso!");
+        }
+
+        public override void Excluir()
+        {
+            Contato contadoSelecionado = listagemContato.ObterRegistroSelecionado();
+
+            DialogResult resposta =  MessageBox.Show(
+                $"Você realmente deseja excluir \"{contadoSelecionado.Nome}\"?  ",
+                "Confirmar Exclusão",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Warning
+                );
+
+            if( resposta != DialogResult.Yes )
+                return;
+
+            repositorioContato.Excluir(contadoSelecionado.Id);
+
+            CarregarContatos();
+
+            TelaPrincipalForm
+                .Instancia
+                .AtualizarRodape("Cadastro EXCLUIDO com sucesso!");
         }
 
         private void CarregarContatos()
@@ -52,5 +106,6 @@ namespace eAgenda.WinApp.ModuloContato
 
             return listagemContato;
         }
+
     }
 }

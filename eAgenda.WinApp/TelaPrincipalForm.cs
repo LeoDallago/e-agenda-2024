@@ -1,4 +1,5 @@
 using eAgenda.WinApp.Compartilhado;
+using eAgenda.WinApp.ModuloCompromisso;
 using eAgenda.WinApp.ModuloContato;
 
 namespace eAgenda.WinApp
@@ -8,6 +9,9 @@ namespace eAgenda.WinApp
         ControladorBase controlador;
 
         RepositorioContato repositorioContato;
+        RepositorioCompromisso repositorioCompromisso;
+
+        public static TelaPrincipalForm Instancia { get; private set; }
 
         public TelaPrincipalForm()
         {
@@ -15,6 +19,14 @@ namespace eAgenda.WinApp
             lblTipoCadastro.Text = string.Empty;
 
             repositorioContato = new RepositorioContato();
+            repositorioCompromisso = new RepositorioCompromisso();
+
+            TelaPrincipalForm.Instancia = this;
+        }
+
+        public void AtualizarRodape(string texto)
+        {
+            statusLabelPrincipal.Text = texto;
         }
 
         private void contatosMenuItem_Click(object sender, EventArgs e)
@@ -29,12 +41,27 @@ namespace eAgenda.WinApp
 
         private void compromissosMenuItem_Click(object sender, EventArgs e)
         {
+            controlador = new ControladorCompromisso(repositorioCompromisso);
 
+            lblTipoCadastro.Text = "Cadastro de " + controlador.TipoCadastro;
+
+            ConfigurarToolTips(controlador);
+            ConfigurarListagem(controlador);
         }
 
         private void btnAdicionar_Click(object sender, EventArgs e)
         {
             controlador.Adicionar();
+        }
+
+        private void btnEditar_Click(object sender, EventArgs e)
+        {
+            controlador.Editar();
+        }
+
+        private void btnExcluir_Click(object sender, EventArgs e)
+        {
+            controlador.Excluir();
         }
 
         private void ConfigurarToolTips(ControladorBase controladorSelecionado)

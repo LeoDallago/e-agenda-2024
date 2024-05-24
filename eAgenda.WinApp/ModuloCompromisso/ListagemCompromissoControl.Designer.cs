@@ -1,6 +1,6 @@
-﻿namespace eAgenda.WinApp.ModuloContato
+﻿namespace eAgenda.WinApp.ModuloCompromisso
 {
-    partial class ListagemContatoControl
+    partial class ListagemCompromissoControl
     {
         /// <summary> 
         /// Required designer variable.
@@ -28,35 +28,32 @@
         /// </summary>
         private void InitializeComponent()
         {
-            listContatos = new ListBox();
+            listCompromisso = new ListBox();
             SuspendLayout();
             // 
-            // listContatos
+            // listCompromisso
             // 
-            listContatos.Dock = DockStyle.Fill;
-            listContatos.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            listContatos.FormattingEnabled = true;
-            listContatos.ItemHeight = 21;
-            listContatos.Location = new Point(0, 0);
-            listContatos.Margin = new Padding(3, 4, 3, 4);
-            listContatos.Name = "listContatos";
-            listContatos.Size = new Size(630, 431);
-            listContatos.TabIndex = 0;
-            listContatos.SelectedIndexChanged += listContatos_SelectedIndexChanged;
+            listCompromisso.Dock = DockStyle.Fill;
+            listCompromisso.FormattingEnabled = true;
+            listCompromisso.Location = new Point(0, 0);
+            listCompromisso.Name = "listCompromisso";
+            listCompromisso.Size = new Size(612, 454);
+            listCompromisso.TabIndex = 0;
+            listCompromisso.SelectedIndexChanged += listCompromisso_SelectedIndexChanged;
             // 
-            // ListagemContatoControl
+            // ListagemCompromissoControl
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            Controls.Add(listContatos);
-            Margin = new Padding(3, 4, 3, 4);
-            Name = "ListagemContatoControl";
-            Size = new Size(630, 431);
+            Controls.Add(listCompromisso);
+            Name = "ListagemCompromissoControl";
+            Size = new Size(612, 454);
+            Load += ListagemCompromissoControl_Load;
             ResumeLayout(false);
         }
 
         #endregion
 
-        private ListBox listContatos;
+        private ListBox listCompromisso;
     }
 }
