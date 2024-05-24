@@ -43,7 +43,7 @@ namespace eAgenda.WinApp.ModuloCompromisso
 
             TelaPrincipalForm
                 .Instancia
-                .AtualizarRodape("Comprimisso ADICIONADO com sucesso!");
+                .AtualizarRodape("Compromisso ADICIONADO com sucesso!");
         }
 
         public override void Editar()
@@ -67,7 +67,7 @@ namespace eAgenda.WinApp.ModuloCompromisso
 
             TelaPrincipalForm
               .Instancia
-                .AtualizarRodape($"Cadastro \"{compromissoSelecinado.Id}\" , \"{compromissoEditado.Assunto}\" editado com sucesso!");
+                .AtualizarRodape($"Cadastro \"{compromissoSelecinado.Id}\" editado com sucesso!");
         }
 
         public override void Excluir()

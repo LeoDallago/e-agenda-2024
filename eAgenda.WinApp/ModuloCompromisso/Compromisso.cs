@@ -26,7 +26,6 @@ namespace eAgenda.WinApp.ModuloCompromisso
             Termino = termino;
             Contato = contato;
             Localização = localizacao;
-          //  Id = id;
         }
 
         public override List<string> Validar()
