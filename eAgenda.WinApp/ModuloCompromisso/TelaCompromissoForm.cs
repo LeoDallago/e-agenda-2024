@@ -28,7 +28,6 @@ namespace eAgenda.WinApp.ModuloCompromisso
         {
             InitializeComponent();
         }
-        //  private string valorRadioButton = "Nenhum valor atribuido";
 
         private void btnGravar_Click(object sender, EventArgs e)
         {
@@ -37,16 +36,7 @@ namespace eAgenda.WinApp.ModuloCompromisso
             string inicio = txtInicio.Text;
             string termino = txtTermino.Text;
             string contato = txtContato.Text;
-            // string localizacao = valorRadioButton;
             string local = txtLocalizacao.Text;
-
-            //if (rdPresencial.Checked)
-            //    localizacao = rdPresencial.Text;
-
-            //if(rdRemoto.Checked)
-            //    localizacao = rdRemoto.Text;
-
-
 
             compromisso = new Compromisso(assunto, data, inicio, termino, contato, local);
         }
@@ -58,15 +48,20 @@ namespace eAgenda.WinApp.ModuloCompromisso
 
         private void rdPresencial_CheckedChanged(object sender, EventArgs e)
         {
-            //valorRadioButton = rdPresencial.Text;
-            txtLocalizacao.ReadOnly = false;
+            txtLocalizacao.Visible = true;
 
         }
 
         private void rdRemoto_CheckedChanged(object sender, EventArgs e)
         {
-            //  valorRadioButton = rdRemoto.Text;
-            txtLocalizacao.ReadOnly = true;
+            txtLocalizacao.Text = null;
+            txtLocalizacao.Visible = false;
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            labelContato.Visible = true;
+            txtContato.Visible = true;
         }
     }
 }

@@ -42,33 +42,36 @@
             txtEmpresa = new TextBox();
             btnCancelar = new Button();
             btnGravar = new Button();
+            label7 = new Label();
             SuspendLayout();
             // 
             // label1
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 11.25F);
-            label1.Location = new Point(104, 97);
+            label1.Location = new Point(102, 72);
             label1.Name = "label1";
             label1.Size = new Size(32, 25);
             label1.TabIndex = 0;
             label1.Text = "Id:";
+            label1.Visible = false;
             // 
             // txtId
             // 
             txtId.Enabled = false;
             txtId.Font = new Font("Segoe UI", 11.25F);
-            txtId.Location = new Point(139, 93);
+            txtId.Location = new Point(139, 65);
             txtId.Margin = new Padding(3, 4, 3, 4);
             txtId.Name = "txtId";
             txtId.Size = new Size(114, 32);
             txtId.TabIndex = 1;
             txtId.Text = "0";
+            txtId.Visible = false;
             // 
             // txtNome
             // 
             txtNome.Font = new Font("Segoe UI", 11.25F);
-            txtNome.Location = new Point(139, 137);
+            txtNome.Location = new Point(139, 105);
             txtNome.Margin = new Padding(3, 4, 3, 4);
             txtNome.Name = "txtNome";
             txtNome.Size = new Size(449, 32);
@@ -78,7 +81,7 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 11.25F);
-            label2.Location = new Point(72, 141);
+            label2.Location = new Point(66, 112);
             label2.Name = "label2";
             label2.Size = new Size(67, 25);
             label2.TabIndex = 2;
@@ -88,7 +91,7 @@
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI", 11.25F);
-            label3.Location = new Point(72, 185);
+            label3.Location = new Point(71, 148);
             label3.Name = "label3";
             label3.Size = new Size(62, 25);
             label3.TabIndex = 2;
@@ -97,7 +100,7 @@
             // txtEmail
             // 
             txtEmail.Font = new Font("Segoe UI", 11.25F);
-            txtEmail.Location = new Point(139, 181);
+            txtEmail.Location = new Point(139, 145);
             txtEmail.Margin = new Padding(3, 4, 3, 4);
             txtEmail.Name = "txtEmail";
             txtEmail.Size = new Size(449, 32);
@@ -107,7 +110,7 @@
             // 
             label4.AutoSize = true;
             label4.Font = new Font("Segoe UI", 11.25F);
-            label4.Location = new Point(54, 229);
+            label4.Location = new Point(49, 188);
             label4.Name = "label4";
             label4.Size = new Size(87, 25);
             label4.TabIndex = 2;
@@ -116,7 +119,7 @@
             // txtTelefone
             // 
             txtTelefone.Font = new Font("Segoe UI", 11.25F);
-            txtTelefone.Location = new Point(139, 225);
+            txtTelefone.Location = new Point(139, 185);
             txtTelefone.Margin = new Padding(3, 4, 3, 4);
             txtTelefone.Name = "txtTelefone";
             txtTelefone.Size = new Size(449, 32);
@@ -126,7 +129,7 @@
             // 
             label5.AutoSize = true;
             label5.Font = new Font("Segoe UI", 11.25F);
-            label5.Location = new Point(69, 273);
+            label5.Location = new Point(66, 228);
             label5.Name = "label5";
             label5.Size = new Size(67, 25);
             label5.TabIndex = 2;
@@ -135,7 +138,7 @@
             // txtCargo
             // 
             txtCargo.Font = new Font("Segoe UI", 11.25F);
-            txtCargo.Location = new Point(139, 269);
+            txtCargo.Location = new Point(139, 225);
             txtCargo.Margin = new Padding(3, 4, 3, 4);
             txtCargo.Name = "txtCargo";
             txtCargo.Size = new Size(179, 32);
@@ -145,7 +148,7 @@
             // 
             label6.AutoSize = true;
             label6.Font = new Font("Segoe UI", 11.25F);
-            label6.Location = new Point(326, 273);
+            label6.Location = new Point(333, 228);
             label6.Name = "label6";
             label6.Size = new Size(88, 25);
             label6.TabIndex = 2;
@@ -154,20 +157,20 @@
             // txtEmpresa
             // 
             txtEmpresa.Font = new Font("Segoe UI", 11.25F);
-            txtEmpresa.Location = new Point(409, 269);
+            txtEmpresa.Location = new Point(427, 225);
             txtEmpresa.Margin = new Padding(3, 4, 3, 4);
             txtEmpresa.Name = "txtEmpresa";
-            txtEmpresa.Size = new Size(179, 32);
+            txtEmpresa.Size = new Size(161, 32);
             txtEmpresa.TabIndex = 4;
             // 
             // btnCancelar
             // 
             btnCancelar.DialogResult = DialogResult.Cancel;
             btnCancelar.Font = new Font("Segoe UI", 11.25F);
-            btnCancelar.Location = new Point(474, 443);
+            btnCancelar.Location = new Point(368, 352);
             btnCancelar.Margin = new Padding(3, 4, 3, 4);
             btnCancelar.Name = "btnCancelar";
-            btnCancelar.Size = new Size(114, 49);
+            btnCancelar.Size = new Size(220, 36);
             btnCancelar.TabIndex = 6;
             btnCancelar.Text = "Cancelar";
             btnCancelar.UseVisualStyleBackColor = true;
@@ -176,20 +179,31 @@
             // 
             btnGravar.DialogResult = DialogResult.OK;
             btnGravar.Font = new Font("Segoe UI", 11.25F);
-            btnGravar.Location = new Point(353, 443);
+            btnGravar.Location = new Point(139, 352);
             btnGravar.Margin = new Padding(3, 4, 3, 4);
             btnGravar.Name = "btnGravar";
-            btnGravar.Size = new Size(114, 49);
+            btnGravar.Size = new Size(223, 36);
             btnGravar.TabIndex = 5;
             btnGravar.Text = "Gravar";
             btnGravar.UseVisualStyleBackColor = true;
             btnGravar.Click += btnGravar_Click;
             // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Font = new Font("Segoe UI Emoji", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label7.Location = new Point(225, 30);
+            label7.Name = "label7";
+            label7.Size = new Size(216, 31);
+            label7.TabIndex = 23;
+            label7.Text = "Cadastrar Contato";
+            // 
             // TelaContatoForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(655, 508);
+            ClientSize = new Size(655, 400);
+            Controls.Add(label7);
             Controls.Add(btnGravar);
             Controls.Add(btnCancelar);
             Controls.Add(txtEmpresa);
@@ -231,5 +245,6 @@
         private TextBox txtEmpresa;
         private Button btnCancelar;
         private Button btnGravar;
+        private Label label7;
     }
 }

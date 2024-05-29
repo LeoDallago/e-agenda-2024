@@ -29,23 +29,25 @@
         private void InitializeComponent()
         {
             txtId = new TextBox();
-            label1 = new Label();
-            label2 = new Label();
+            labelID = new Label();
+            labelAssunto = new Label();
             txtAssunto = new TextBox();
             label3 = new Label();
             dateTimeData = new DateTimePicker();
-            label4 = new Label();
-            label5 = new Label();
+            labelInicio = new Label();
+            labelTermino = new Label();
             txtContato = new TextBox();
-            label6 = new Label();
+            labelContato = new Label();
             grupoLocalização = new GroupBox();
             txtLocalizacao = new TextBox();
             rdRemoto = new RadioButton();
             rdPresencial = new RadioButton();
             btnGravar = new Button();
             btnCancelar = new Button();
-            txtInicio = new TextBox();
-            txtTermino = new TextBox();
+            txtInicio = new DateTimePicker();
+            txtTermino = new DateTimePicker();
+            checkBoxMarcarPessoa = new CheckBox();
+            label1 = new Label();
             grupoLocalização.SuspendLayout();
             SuspendLayout();
             // 
@@ -59,25 +61,27 @@
             txtId.Size = new Size(114, 32);
             txtId.TabIndex = 2;
             txtId.Text = "0";
+            txtId.Visible = false;
             // 
-            // label1
+            // labelID
             // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 11.25F);
-            label1.Location = new Point(99, 54);
-            label1.Name = "label1";
-            label1.Size = new Size(28, 25);
-            label1.TabIndex = 3;
-            label1.Text = "Id";
+            labelID.AutoSize = true;
+            labelID.Font = new Font("Segoe UI", 11.25F);
+            labelID.Location = new Point(99, 54);
+            labelID.Name = "labelID";
+            labelID.Size = new Size(28, 25);
+            labelID.TabIndex = 3;
+            labelID.Text = "Id";
+            labelID.Visible = false;
             // 
-            // label2
+            // labelAssunto
             // 
-            label2.AutoSize = true;
-            label2.Location = new Point(66, 102);
-            label2.Name = "label2";
-            label2.Size = new Size(61, 20);
-            label2.TabIndex = 4;
-            label2.Text = "Assunto";
+            labelAssunto.AutoSize = true;
+            labelAssunto.Location = new Point(66, 102);
+            labelAssunto.Name = "labelAssunto";
+            labelAssunto.Size = new Size(61, 20);
+            labelAssunto.TabIndex = 4;
+            labelAssunto.Text = "Assunto";
             // 
             // txtAssunto
             // 
@@ -86,7 +90,7 @@
             txtAssunto.Margin = new Padding(3, 4, 3, 4);
             txtAssunto.Name = "txtAssunto";
             txtAssunto.Size = new Size(449, 32);
-            txtAssunto.TabIndex = 5;
+            txtAssunto.TabIndex = 0;
             // 
             // label3
             // 
@@ -104,52 +108,54 @@
             dateTimeData.Location = new Point(133, 141);
             dateTimeData.Name = "dateTimeData";
             dateTimeData.Size = new Size(125, 31);
-            dateTimeData.TabIndex = 7;
+            dateTimeData.TabIndex = 1;
             // 
-            // label4
+            // labelInicio
             // 
-            label4.AutoSize = true;
-            label4.Location = new Point(82, 201);
-            label4.Name = "label4";
-            label4.Size = new Size(45, 20);
-            label4.TabIndex = 8;
-            label4.Text = "Inicio";
+            labelInicio.AutoSize = true;
+            labelInicio.Location = new Point(82, 201);
+            labelInicio.Name = "labelInicio";
+            labelInicio.Size = new Size(45, 20);
+            labelInicio.TabIndex = 8;
+            labelInicio.Text = "Inicio";
             // 
-            // label5
+            // labelTermino
             // 
-            label5.AutoSize = true;
-            label5.Location = new Point(388, 204);
-            label5.Name = "label5";
-            label5.Size = new Size(63, 20);
-            label5.TabIndex = 11;
-            label5.Text = "Termino";
+            labelTermino.AutoSize = true;
+            labelTermino.Location = new Point(388, 201);
+            labelTermino.Name = "labelTermino";
+            labelTermino.Size = new Size(63, 20);
+            labelTermino.TabIndex = 11;
+            labelTermino.Text = "Termino";
             // 
             // txtContato
             // 
             txtContato.Font = new Font("Segoe UI", 11.25F);
-            txtContato.Location = new Point(133, 252);
+            txtContato.Location = new Point(133, 284);
             txtContato.Margin = new Padding(3, 4, 3, 4);
             txtContato.Name = "txtContato";
             txtContato.Size = new Size(449, 32);
-            txtContato.TabIndex = 12;
+            txtContato.TabIndex = 5;
+            txtContato.Visible = false;
             // 
-            // label6
+            // labelContato
             // 
-            label6.AutoSize = true;
-            label6.Location = new Point(65, 259);
-            label6.Name = "label6";
-            label6.Size = new Size(62, 20);
-            label6.TabIndex = 13;
-            label6.Text = "Contato";
+            labelContato.AutoSize = true;
+            labelContato.Location = new Point(65, 291);
+            labelContato.Name = "labelContato";
+            labelContato.Size = new Size(62, 20);
+            labelContato.TabIndex = 13;
+            labelContato.Text = "Contato";
+            labelContato.Visible = false;
             // 
             // grupoLocalização
             // 
             grupoLocalização.Controls.Add(txtLocalizacao);
             grupoLocalização.Controls.Add(rdRemoto);
             grupoLocalização.Controls.Add(rdPresencial);
-            grupoLocalização.Location = new Point(133, 309);
+            grupoLocalização.Location = new Point(133, 334);
             grupoLocalização.Name = "grupoLocalização";
-            grupoLocalização.Size = new Size(449, 112);
+            grupoLocalização.Size = new Size(449, 121);
             grupoLocalização.TabIndex = 14;
             grupoLocalização.TabStop = false;
             grupoLocalização.Text = "Localização";
@@ -161,15 +167,17 @@
             txtLocalizacao.Margin = new Padding(3, 4, 3, 4);
             txtLocalizacao.Name = "txtLocalizacao";
             txtLocalizacao.Size = new Size(370, 32);
-            txtLocalizacao.TabIndex = 13;
+            txtLocalizacao.TabIndex = 8;
+            txtLocalizacao.Visible = false;
             // 
             // rdRemoto
             // 
             rdRemoto.AutoSize = true;
+            rdRemoto.Checked = true;
             rdRemoto.Location = new Point(324, 26);
             rdRemoto.Name = "rdRemoto";
             rdRemoto.Size = new Size(83, 24);
-            rdRemoto.TabIndex = 1;
+            rdRemoto.TabIndex = 7;
             rdRemoto.TabStop = true;
             rdRemoto.Text = "Remoto";
             rdRemoto.UseVisualStyleBackColor = true;
@@ -181,8 +189,7 @@
             rdPresencial.Location = new Point(37, 27);
             rdPresencial.Name = "rdPresencial";
             rdPresencial.Size = new Size(96, 24);
-            rdPresencial.TabIndex = 0;
-            rdPresencial.TabStop = true;
+            rdPresencial.TabIndex = 6;
             rdPresencial.Text = "Presencial";
             rdPresencial.UseVisualStyleBackColor = true;
             rdPresencial.CheckedChanged += rdPresencial_CheckedChanged;
@@ -191,11 +198,11 @@
             // 
             btnGravar.DialogResult = DialogResult.OK;
             btnGravar.Font = new Font("Segoe UI", 11.25F);
-            btnGravar.Location = new Point(348, 446);
+            btnGravar.Location = new Point(133, 462);
             btnGravar.Margin = new Padding(3, 4, 3, 4);
             btnGravar.Name = "btnGravar";
-            btnGravar.Size = new Size(114, 49);
-            btnGravar.TabIndex = 17;
+            btnGravar.Size = new Size(214, 33);
+            btnGravar.TabIndex = 9;
             btnGravar.Text = "Gravar";
             btnGravar.UseVisualStyleBackColor = true;
             btnGravar.Click += btnGravar_Click;
@@ -204,49 +211,79 @@
             // 
             btnCancelar.DialogResult = DialogResult.Cancel;
             btnCancelar.Font = new Font("Segoe UI", 11.25F);
-            btnCancelar.Location = new Point(468, 446);
+            btnCancelar.Location = new Point(388, 462);
             btnCancelar.Margin = new Padding(3, 4, 3, 4);
             btnCancelar.Name = "btnCancelar";
-            btnCancelar.Size = new Size(114, 49);
-            btnCancelar.TabIndex = 18;
+            btnCancelar.Size = new Size(194, 33);
+            btnCancelar.TabIndex = 10;
             btnCancelar.Text = "Cancelar";
             btnCancelar.UseVisualStyleBackColor = true;
             // 
             // txtInicio
             // 
+            txtInicio.CustomFormat = "HH:mm";
             txtInicio.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtInicio.Location = new Point(133, 201);
+            txtInicio.Format = DateTimePickerFormat.Custom;
+            txtInicio.Location = new Point(133, 195);
             txtInicio.Name = "txtInicio";
+            txtInicio.ShowUpDown = true;
             txtInicio.Size = new Size(125, 31);
-            txtInicio.TabIndex = 19;
+            txtInicio.TabIndex = 2;
             // 
             // txtTermino
             // 
+            txtTermino.CustomFormat = "HH:mm";
             txtTermino.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtTermino.Location = new Point(457, 201);
+            txtTermino.Format = DateTimePickerFormat.Custom;
+            txtTermino.Location = new Point(457, 195);
             txtTermino.Name = "txtTermino";
+            txtTermino.ShowUpDown = true;
             txtTermino.Size = new Size(125, 31);
-            txtTermino.TabIndex = 20;
+            txtTermino.TabIndex = 3;
+            // 
+            // checkBoxMarcarPessoa
+            // 
+            checkBoxMarcarPessoa.AutoSize = true;
+            checkBoxMarcarPessoa.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            checkBoxMarcarPessoa.Location = new Point(133, 248);
+            checkBoxMarcarPessoa.Name = "checkBoxMarcarPessoa";
+            checkBoxMarcarPessoa.Size = new Size(154, 29);
+            checkBoxMarcarPessoa.TabIndex = 4;
+            checkBoxMarcarPessoa.Text = "Marcar contato";
+            checkBoxMarcarPessoa.UseVisualStyleBackColor = true;
+            checkBoxMarcarPessoa.CheckedChanged += checkBox1_CheckedChanged;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI Emoji", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.Location = new Point(203, 16);
+            label1.Name = "label1";
+            label1.Size = new Size(280, 31);
+            label1.TabIndex = 22;
+            label1.Text = "Cadastrar Compromisso";
             // 
             // TelaCompromissoForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(655, 508);
+            Controls.Add(label1);
+            Controls.Add(checkBoxMarcarPessoa);
             Controls.Add(txtTermino);
             Controls.Add(txtInicio);
             Controls.Add(btnCancelar);
             Controls.Add(btnGravar);
             Controls.Add(grupoLocalização);
-            Controls.Add(label6);
+            Controls.Add(labelContato);
             Controls.Add(txtContato);
-            Controls.Add(label5);
-            Controls.Add(label4);
+            Controls.Add(labelTermino);
+            Controls.Add(labelInicio);
             Controls.Add(dateTimeData);
             Controls.Add(label3);
             Controls.Add(txtAssunto);
-            Controls.Add(label2);
-            Controls.Add(label1);
+            Controls.Add(labelAssunto);
+            Controls.Add(labelID);
             Controls.Add(txtId);
             Name = "TelaCompromissoForm";
             Text = "TelaCompromissoForm";
@@ -260,22 +297,24 @@
         #endregion
 
         private TextBox txtId;
-        private Label label1;
-        private Label label2;
+        private Label labelID;
+        private Label labelAssunto;
         private TextBox txtAssunto;
         private Label label3;
         private DateTimePicker dateTimeData;
-        private Label label4;
-        private Label label5;
+        private Label labelInicio;
+        private Label labelTermino;
         private TextBox txtContato;
-        private Label label6;
+        private Label labelContato;
         private GroupBox grupoLocalização;
         private RadioButton rdPresencial;
         private RadioButton rdRemoto;
         private Button btnGravar;
         private Button btnCancelar;
-        private TextBox txtInicio;
-        private TextBox txtTermino;
         private TextBox txtLocalizacao;
+        private DateTimePicker txtInicio;
+        private DateTimePicker txtTermino;
+        private CheckBox checkBoxMarcarPessoa;
+        private Label label1;
     }
 }
