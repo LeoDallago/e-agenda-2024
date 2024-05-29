@@ -16,6 +16,7 @@ namespace eAgenda.WinApp.ModuloCompromisso
                 txtInicio.Text = value.Inicio;
                 txtTermino.Text = value.Termino;
                 txtContato.Text = value.Contato;
+                txtLocalizacao.Text = value.Local;
             }
 
             get { return compromisso; }
@@ -27,7 +28,7 @@ namespace eAgenda.WinApp.ModuloCompromisso
         {
             InitializeComponent();
         }
-       private string valorRadioButton = "Nenhum valor atribuido";
+        //  private string valorRadioButton = "Nenhum valor atribuido";
 
         private void btnGravar_Click(object sender, EventArgs e)
         {
@@ -36,7 +37,8 @@ namespace eAgenda.WinApp.ModuloCompromisso
             string inicio = txtInicio.Text;
             string termino = txtTermino.Text;
             string contato = txtContato.Text;
-            string localizacao = valorRadioButton;
+            // string localizacao = valorRadioButton;
+            string local = txtLocalizacao.Text;
 
             //if (rdPresencial.Checked)
             //    localizacao = rdPresencial.Text;
@@ -46,7 +48,7 @@ namespace eAgenda.WinApp.ModuloCompromisso
 
 
 
-            compromisso = new Compromisso(assunto, data, inicio, termino, contato, localizacao);
+            compromisso = new Compromisso(assunto, data, inicio, termino, contato, local);
         }
 
         private void TelaCompromissoForm_Load(object sender, EventArgs e)
@@ -56,13 +58,15 @@ namespace eAgenda.WinApp.ModuloCompromisso
 
         private void rdPresencial_CheckedChanged(object sender, EventArgs e)
         {
-            valorRadioButton = rdPresencial.Text;
+            //valorRadioButton = rdPresencial.Text;
+            txtLocalizacao.ReadOnly = false;
 
         }
 
         private void rdRemoto_CheckedChanged(object sender, EventArgs e)
         {
-            valorRadioButton = rdRemoto.Text;
+            //  valorRadioButton = rdRemoto.Text;
+            txtLocalizacao.ReadOnly = true;
         }
     }
 }

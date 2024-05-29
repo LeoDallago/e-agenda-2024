@@ -17,15 +17,32 @@ namespace eAgenda.WinApp.ModuloCompromisso
         public string Termino { get; set; }
         public string Contato {  get; set; }
         public string Localização { get; set; }
+        public string Local { get; set; }
 
-        public Compromisso(string assunto, string dataCompromisso, string inicio, string termino, string contato, string localizacao)
+        public TipoCompromissoEnum TipoCompromisso
+        {
+            get
+            {
+                TipoCompromissoEnum tipoSelcionado;
+                
+                if(Local.Length > 0)
+                 tipoSelcionado = TipoCompromissoEnum.Presencial;
+                else
+                 tipoSelcionado = TipoCompromissoEnum.Remoto;
+
+                return tipoSelcionado;
+            }
+        }
+
+        public Compromisso(string assunto, string dataCompromisso, string inicio, string termino, string contato, string local)
         {
             Assunto = assunto;
             DataCompromisso = dataCompromisso;
             Inicio = inicio;
             Termino = termino;
             Contato = contato;
-            Localização = localizacao;
+            Local = local;
+            Localização = TipoCompromisso.ToString();
         }
 
         public override List<string> Validar()
@@ -63,13 +80,14 @@ namespace eAgenda.WinApp.ModuloCompromisso
             Termino = atualizado.Termino;
             Contato = atualizado.Contato;
             Localização = atualizado.Localização;
+            Local = atualizado.Local;
         }
 
         public override string ToString()
         {
             return $"Id: {Id}, Assunto: {Assunto}, Data: {DataCompromisso}," +
                 $" Inicio: {Inicio} Termino: {Termino}, Contato: {Contato}, " +
-                $"Localizacao: {Localização}";
+                $"Local: {Local}, Localização: {TipoCompromisso}";
         }
     }
 }

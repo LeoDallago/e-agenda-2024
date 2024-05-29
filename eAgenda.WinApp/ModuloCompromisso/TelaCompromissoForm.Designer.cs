@@ -39,6 +39,7 @@
             txtContato = new TextBox();
             label6 = new Label();
             grupoLocalização = new GroupBox();
+            txtLocalizacao = new TextBox();
             rdRemoto = new RadioButton();
             rdPresencial = new RadioButton();
             btnGravar = new Button();
@@ -98,9 +99,11 @@
             // 
             // dateTimeData
             // 
+            dateTimeData.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dateTimeData.Format = DateTimePickerFormat.Short;
             dateTimeData.Location = new Point(133, 141);
             dateTimeData.Name = "dateTimeData";
-            dateTimeData.Size = new Size(250, 27);
+            dateTimeData.Size = new Size(125, 31);
             dateTimeData.TabIndex = 7;
             // 
             // label4
@@ -133,7 +136,7 @@
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(65, 264);
+            label6.Location = new Point(65, 259);
             label6.Name = "label6";
             label6.Size = new Size(62, 20);
             label6.TabIndex = 13;
@@ -141,14 +144,24 @@
             // 
             // grupoLocalização
             // 
+            grupoLocalização.Controls.Add(txtLocalizacao);
             grupoLocalização.Controls.Add(rdRemoto);
             grupoLocalização.Controls.Add(rdPresencial);
             grupoLocalização.Location = new Point(133, 309);
             grupoLocalização.Name = "grupoLocalização";
-            grupoLocalização.Size = new Size(449, 62);
+            grupoLocalização.Size = new Size(449, 112);
             grupoLocalização.TabIndex = 14;
             grupoLocalização.TabStop = false;
             grupoLocalização.Text = "Localização";
+            // 
+            // txtLocalizacao
+            // 
+            txtLocalizacao.Font = new Font("Segoe UI", 11.25F);
+            txtLocalizacao.Location = new Point(37, 73);
+            txtLocalizacao.Margin = new Padding(3, 4, 3, 4);
+            txtLocalizacao.Name = "txtLocalizacao";
+            txtLocalizacao.Size = new Size(370, 32);
+            txtLocalizacao.TabIndex = 13;
             // 
             // rdRemoto
             // 
@@ -201,16 +214,18 @@
             // 
             // txtInicio
             // 
+            txtInicio.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtInicio.Location = new Point(133, 201);
             txtInicio.Name = "txtInicio";
-            txtInicio.Size = new Size(125, 27);
+            txtInicio.Size = new Size(125, 31);
             txtInicio.TabIndex = 19;
             // 
             // txtTermino
             // 
+            txtTermino.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtTermino.Location = new Point(457, 201);
             txtTermino.Name = "txtTermino";
-            txtTermino.Size = new Size(125, 27);
+            txtTermino.Size = new Size(125, 31);
             txtTermino.TabIndex = 20;
             // 
             // TelaCompromissoForm
@@ -261,5 +276,6 @@
         private Button btnCancelar;
         private TextBox txtInicio;
         private TextBox txtTermino;
+        private TextBox txtLocalizacao;
     }
 }
