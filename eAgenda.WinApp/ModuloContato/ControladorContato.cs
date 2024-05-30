@@ -48,6 +48,16 @@ namespace eAgenda.WinApp.ModuloContato
 
             Contato contatoSelecionado = listagemContato.ObterRegistroSelecionado();
 
+            if (contatoSelecionado == null)
+            {
+                MessageBox.Show("Por favor, selecione um registro",
+                    "Atenção",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information
+                    );
+                return;
+            }
+
             telaContato.Contato = contatoSelecionado;
 
             DialogResult resultado = telaContato.ShowDialog();
@@ -55,6 +65,7 @@ namespace eAgenda.WinApp.ModuloContato
             //Guarda
             if(resultado != DialogResult.OK) 
                 return;
+
 
             Contato contadoEditado = telaContato.Contato;
 
@@ -71,6 +82,16 @@ namespace eAgenda.WinApp.ModuloContato
         {
             Contato contadoSelecionado = listagemContato.ObterRegistroSelecionado();
 
+            if (contadoSelecionado == null)
+            {
+                MessageBox.Show("Por favor, selecione um registro",
+                    "Atenção",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information
+                    );
+                return;
+            }
+
             DialogResult resposta =  MessageBox.Show(
                 $"Você realmente deseja excluir \"{contadoSelecionado.Nome}\"?  ",
                 "Confirmar Exclusão",
@@ -80,6 +101,7 @@ namespace eAgenda.WinApp.ModuloContato
 
             if( resposta != DialogResult.Yes )
                 return;
+
 
             repositorioContato.Excluir(contadoSelecionado.Id);
 

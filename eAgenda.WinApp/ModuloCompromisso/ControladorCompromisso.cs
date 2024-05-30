@@ -54,6 +54,16 @@ namespace eAgenda.WinApp.ModuloCompromisso
 
             Compromisso compromissoSelecinado = listagemCompromisso.ObterRegistroSelecionado();
 
+            if(compromissoSelecinado == null)
+            {
+                MessageBox.Show("Por favor, selecione um registro",
+                    "Atenção",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information
+                    );
+                return;
+            }
+
             telaCompromisso.Compromisso = compromissoSelecinado;
 
             DialogResult resultado = telaCompromisso.ShowDialog();
@@ -62,6 +72,7 @@ namespace eAgenda.WinApp.ModuloCompromisso
                 return;
 
             Compromisso compromissoEditado = telaCompromisso.Compromisso;
+
 
             repositorioCompromisso.Editar(compromissoSelecinado.Id, compromissoEditado);
 
@@ -76,6 +87,16 @@ namespace eAgenda.WinApp.ModuloCompromisso
         {
             Compromisso compromissoSelecionado = listagemCompromisso.ObterRegistroSelecionado();
 
+            if (compromissoSelecionado == null)
+            {
+                MessageBox.Show("Por favor, selecione um registro",
+                    "Atenção",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information
+                    );
+                return;
+            }
+
             DialogResult resposta = MessageBox.Show(
                 $"Você realmente deseja excluir \"{compromissoSelecionado.Id}\"?  ",
                 "Confirmar Exclusão",
@@ -85,6 +106,7 @@ namespace eAgenda.WinApp.ModuloCompromisso
 
             if( resposta != DialogResult.Yes )
                 return;
+
 
             repositorioCompromisso.Excluir(compromissoSelecionado.Id);
 
