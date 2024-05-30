@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace eAgenda.WinApp.ModuloCompromisso
 {
-    public class ControladorCompromisso : ControladorBase
+    public class ControladorCompromisso : ControladorBase, IControladorFiltravel
     {
         private RepositorioCompromisso repositorioCompromisso;
         private ListagemCompromissoControl listagemCompromisso;
@@ -25,6 +25,8 @@ namespace eAgenda.WinApp.ModuloCompromisso
         public override string ToolTipEditar { get { return "Editar um compromisso existente"; } }
 
         public override string ToolTipExcluir { get { return "Excluir um compromisso existente"; } }
+
+        public string ToolTipFiltrar { get { return "Filtar compromissos"; } }
 
         public override void Adicionar()
         {
@@ -91,6 +93,33 @@ namespace eAgenda.WinApp.ModuloCompromisso
             TelaPrincipalForm
              .Instancia
              .AtualizarRodape("Cadastro EXCLUIDO com sucesso!");
+        }
+
+        public void Filtrar()
+        {
+            TelaFiltroCompromissoForm telaFiltro = new TelaFiltroCompromissoForm();
+
+            DialogResult resultado = telaFiltro.ShowDialog();
+
+            if( resultado != DialogResult.OK)
+                return;
+
+            TipoFiltroCompromissoEnum filtroSelecionado = telaFiltro.FiltroEscolhido;
+
+            List<Compromisso> compromissosSelecionados;
+
+
+             if (filtroSelecionado == TipoFiltroCompromissoEnum.Passados)
+                compromissosSelecionados = repositorioCompromisso.SelecionarCompromissosPassados();
+
+            else if (filtroSelecionado == TipoFiltroCompromissoEnum.Futuros)
+                compromissosSelecionados = repositorioCompromisso.SelecionarCompromissosFuturos();
+
+            else  compromissosSelecionados = repositorioCompromisso.SelecionarTodos();
+
+            listagemCompromisso.AtualizarRegistros(compromissosSelecionados);
+
+            TelaPrincipalForm.Instancia.AtualizarRodape($"Visualizando {compromissosSelecionados.Count} registros");
         }
 
         private void CarregarComprimisso()

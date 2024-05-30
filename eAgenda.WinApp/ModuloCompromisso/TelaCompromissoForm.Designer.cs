@@ -285,7 +285,10 @@
             Controls.Add(labelAssunto);
             Controls.Add(labelID);
             Controls.Add(txtId);
+            MaximizeBox = false;
+            MinimizeBox = false;
             Name = "TelaCompromissoForm";
+            StartPosition = FormStartPosition.CenterParent;
             Text = "TelaCompromissoForm";
             Load += TelaCompromissoForm_Load;
             grupoLocalização.ResumeLayout(false);

@@ -64,6 +64,12 @@ namespace eAgenda.WinApp
             controlador.Excluir();
         }
 
+        private void btnFiltrar_Click(object sender, EventArgs e)
+        {
+            if(controlador is IControladorFiltravel controladorFiltravel)
+                controladorFiltravel.Filtrar();
+        }
+
         private void ConfigurarToolTips(ControladorBase controladorSelecionado)
         {
             btnAdicionar.ToolTipText = controladorSelecionado.ToolTipAdicionar;
@@ -78,5 +84,6 @@ namespace eAgenda.WinApp
             pnlRegistros.Controls.Clear();
             pnlRegistros.Controls.Add(listagemContato);
         }
+
     }
 }

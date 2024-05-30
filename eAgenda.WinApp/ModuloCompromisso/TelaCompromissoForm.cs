@@ -12,9 +12,9 @@ namespace eAgenda.WinApp.ModuloCompromisso
             {
                 txtId.Text = value.Id.ToString();
                 txtAssunto.Text = value.Assunto;
-                dateTimeData.Text = value.DataCompromisso;
-                txtInicio.Text = value.Inicio;
-                txtTermino.Text = value.Termino;
+                dateTimeData.Value = value.DataCompromisso;
+                txtInicio.Value = value.Inicio;
+                txtTermino.Value = value.Termino;
                 txtContato.Text = value.Contato;
                 txtLocalizacao.Text = value.Local;
             }
@@ -32,9 +32,9 @@ namespace eAgenda.WinApp.ModuloCompromisso
         private void btnGravar_Click(object sender, EventArgs e)
         {
             string assunto = txtAssunto.Text;
-            string data = dateTimeData.Text;
-            string inicio = txtInicio.Text;
-            string termino = txtTermino.Text;
+            DateTime data = dateTimeData.Value;
+            DateTime inicio = txtInicio.Value;
+            DateTime termino = txtTermino.Value;
             string contato = txtContato.Text;
             string local = txtLocalizacao.Text;
 

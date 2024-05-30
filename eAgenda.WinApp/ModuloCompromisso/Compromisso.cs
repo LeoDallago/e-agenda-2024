@@ -12,9 +12,9 @@ namespace eAgenda.WinApp.ModuloCompromisso
     public class Compromisso : EntidadeBase
     {
         public string Assunto { get; set; }
-        public string DataCompromisso { get; set; }
-        public string Inicio { get; set; }
-        public string Termino { get; set; }
+        public DateTime DataCompromisso { get; set; }
+        public DateTime Inicio { get; set; }
+        public DateTime Termino { get; set; }
         public string Contato {  get; set; }
         public string Localização { get; set; }
         public string Local { get; set; }
@@ -34,7 +34,7 @@ namespace eAgenda.WinApp.ModuloCompromisso
             }
         }
 
-        public Compromisso(string assunto, string dataCompromisso, string inicio, string termino, string contato, string local)
+        public Compromisso(string assunto, DateTime dataCompromisso, DateTime inicio, DateTime termino, string contato, string local)
         {
             Assunto = assunto;
             DataCompromisso = dataCompromisso;
@@ -52,13 +52,13 @@ namespace eAgenda.WinApp.ModuloCompromisso
             if (string.IsNullOrEmpty(Assunto.Trim()))
                 erros.Add("O campo \"assunto\" é obrigatório");
 
-            if (string.IsNullOrEmpty(DataCompromisso.Trim()))
+            if (DataCompromisso == null)
                 erros.Add("O campo \"Data\" é obrigatório");
 
-            if (string.IsNullOrEmpty(Inicio.Trim()))
+            if (DataCompromisso == null)
                 erros.Add("O campo \"inicio\" é obrigatório");
 
-            if (string.IsNullOrEmpty(Termino.Trim()))
+            if (DataCompromisso == null)
                 erros.Add("O campo \"termino\" é obrigatório");
 
             if (string.IsNullOrEmpty(Contato.Trim()))
