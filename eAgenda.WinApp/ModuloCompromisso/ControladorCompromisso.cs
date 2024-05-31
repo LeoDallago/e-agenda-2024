@@ -11,7 +11,7 @@ namespace eAgenda.WinApp.ModuloCompromisso
     public class ControladorCompromisso : ControladorBase, IControladorFiltravel
     {
         private RepositorioCompromisso repositorioCompromisso;
-        private ListagemCompromissoControl listagemCompromisso;
+        private TabelaCompromissoControl tabelaCompromisso;
 
         public ControladorCompromisso(RepositorioCompromisso repositorio)
         {
@@ -52,7 +52,7 @@ namespace eAgenda.WinApp.ModuloCompromisso
         {
             TelaCompromissoForm telaCompromisso = new TelaCompromissoForm ();
 
-            Compromisso compromissoSelecinado = listagemCompromisso.ObterRegistroSelecionado();
+            Compromisso compromissoSelecinado = tabelaCompromisso.ObterRegistroSelecionado();
 
             if(compromissoSelecinado == null)
             {
@@ -85,7 +85,7 @@ namespace eAgenda.WinApp.ModuloCompromisso
 
         public override void Excluir()
         {
-            Compromisso compromissoSelecionado = listagemCompromisso.ObterRegistroSelecionado();
+            Compromisso compromissoSelecionado = tabelaCompromisso.ObterRegistroSelecionado();
 
             if (compromissoSelecionado == null)
             {
@@ -131,15 +131,22 @@ namespace eAgenda.WinApp.ModuloCompromisso
             List<Compromisso> compromissosSelecionados;
 
 
-             if (filtroSelecionado == TipoFiltroCompromissoEnum.Passados)
+            if (filtroSelecionado == TipoFiltroCompromissoEnum.Passados)
                 compromissosSelecionados = repositorioCompromisso.SelecionarCompromissosPassados();
 
             else if (filtroSelecionado == TipoFiltroCompromissoEnum.Futuros)
                 compromissosSelecionados = repositorioCompromisso.SelecionarCompromissosFuturos();
 
-            else  compromissosSelecionados = repositorioCompromisso.SelecionarTodos();
+            else if (filtroSelecionado == TipoFiltroCompromissoEnum.Periodo)
+            {
+                DateTime dataInicio = telaFiltro.InicioPeriodo;
+                DateTime dataTermino = telaFiltro.TerminoPeriodo;
+                compromissosSelecionados = repositorioCompromisso.SelecionarCompromissosPorPeriodo(dataInicio,dataTermino);
+            }
 
-            listagemCompromisso.AtualizarRegistros(compromissosSelecionados);
+            else compromissosSelecionados = repositorioCompromisso.SelecionarTodos();
+
+            tabelaCompromisso.AtualizarRegistros(compromissosSelecionados);
 
             TelaPrincipalForm.Instancia.AtualizarRodape($"Visualizando {compromissosSelecionados.Count} registros");
         }
@@ -148,17 +155,17 @@ namespace eAgenda.WinApp.ModuloCompromisso
         {
             List<Compromisso> compromissos = repositorioCompromisso.SelecionarTodos();
 
-            listagemCompromisso.AtualizarRegistros(compromissos);
+            tabelaCompromisso.AtualizarRegistros(compromissos);
         }
 
         public override UserControl ObterListagem()
         {
-            if (listagemCompromisso == null)
-               listagemCompromisso = new ListagemCompromissoControl();
+            if (tabelaCompromisso == null)
+               tabelaCompromisso = new TabelaCompromissoControl();
 
             CarregarComprimisso();
 
-            return listagemCompromisso;
+            return tabelaCompromisso;
             
         }
     }
