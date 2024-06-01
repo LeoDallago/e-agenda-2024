@@ -42,7 +42,6 @@
             // 
             grid.AllowUserToAddRows = false;
             grid.AllowUserToDeleteRows = false;
-            grid.AllowUserToResizeColumns = false;
             grid.AllowUserToResizeRows = false;
             grid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             grid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;

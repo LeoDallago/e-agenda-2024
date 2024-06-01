@@ -52,9 +52,9 @@ namespace eAgenda.WinApp.ModuloCompromisso
         {
             TelaCompromissoForm telaCompromisso = new TelaCompromissoForm ();
 
-            Compromisso compromissoSelecinado = tabelaCompromisso.ObterRegistroSelecionado();
+            int idSelecionado = tabelaCompromisso.ObterRegistroSelecionado();
 
-            if(compromissoSelecinado == null)
+            if(idSelecionado == null)
             {
                 MessageBox.Show("Por favor, selecione um registro",
                     "Atenção",
@@ -64,7 +64,7 @@ namespace eAgenda.WinApp.ModuloCompromisso
                 return;
             }
 
-            telaCompromisso.Compromisso = compromissoSelecinado;
+            telaCompromisso.Compromisso = repositorioCompromisso.SelecionarPorId(idSelecionado);
 
             DialogResult resultado = telaCompromisso.ShowDialog();
 
@@ -74,20 +74,20 @@ namespace eAgenda.WinApp.ModuloCompromisso
             Compromisso compromissoEditado = telaCompromisso.Compromisso;
 
 
-            repositorioCompromisso.Editar(compromissoSelecinado.Id, compromissoEditado);
+            repositorioCompromisso.Editar(idSelecionado, compromissoEditado);
 
             CarregarComprimisso ();
 
             TelaPrincipalForm
               .Instancia
-                .AtualizarRodape($"Cadastro \"{compromissoSelecinado.Id}\" editado com sucesso!");
+                .AtualizarRodape($"Cadastro \"{idSelecionado}\" editado com sucesso!");
         }
 
         public override void Excluir()
         {
-            Compromisso compromissoSelecionado = tabelaCompromisso.ObterRegistroSelecionado();
+            int idSelecionado = tabelaCompromisso.ObterRegistroSelecionado();
 
-            if (compromissoSelecionado == null)
+            if (idSelecionado == null)
             {
                 MessageBox.Show("Por favor, selecione um registro",
                     "Atenção",
@@ -98,7 +98,7 @@ namespace eAgenda.WinApp.ModuloCompromisso
             }
 
             DialogResult resposta = MessageBox.Show(
-                $"Você realmente deseja excluir \"{compromissoSelecionado.Id}\"?  ",
+                $"Você realmente deseja excluir \"{idSelecionado}\"?  ",
                 "Confirmar Exclusão",
                 MessageBoxButtons.YesNo,
                 MessageBoxIcon.Warning
@@ -108,7 +108,7 @@ namespace eAgenda.WinApp.ModuloCompromisso
                 return;
 
 
-            repositorioCompromisso.Excluir(compromissoSelecionado.Id);
+            repositorioCompromisso.Excluir(idSelecionado);
 
             CarregarComprimisso();
 

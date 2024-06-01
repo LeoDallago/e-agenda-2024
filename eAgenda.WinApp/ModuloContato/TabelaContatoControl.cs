@@ -1,4 +1,5 @@
-﻿using System;
+﻿using eAgenda.WinApp.Compartilhado;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,6 +16,8 @@ namespace eAgenda.WinApp.ModuloContato
         public TabelaContatoControl()
         {
             InitializeComponent();
+
+            grid.ConfigurarGridZebrado();
         }
 
         public void AtualizarRegistros(List<Contato> contatos)
@@ -23,13 +26,13 @@ namespace eAgenda.WinApp.ModuloContato
 
             foreach (Contato contato in contatos)
             {
-                grid.Rows.Add(contato.Id,contato.Nome,contato.Telefone,contato.Email,contato.Empresa,contato.Cargo);
+                grid.Rows.Add(contato.Id,contato.Nome.ToTitleCase(),contato.Telefone,contato.Email,contato.Empresa,contato.Cargo);
             }
         }
 
-        public Contato ObterRegistroSelecionado()
+        public int ObterRegistroSelecionado()
         {
-            return null;
+            return grid.SelecionarId();
         }
 
         private void grid_CellContentClick(object sender, DataGridViewCellEventArgs e)

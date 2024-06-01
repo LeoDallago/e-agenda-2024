@@ -1,4 +1,5 @@
-﻿using eAgenda.WinApp.ModuloContato;
+﻿using eAgenda.WinApp.Compartilhado;
+using eAgenda.WinApp.ModuloContato;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,21 +17,12 @@ namespace eAgenda.WinApp.ModuloCompromisso
         public TabelaCompromissoControl()
         {
             InitializeComponent();
-
-            DataGridViewColumn[] colunas = new DataGridViewColumn[]
-            {
-                new DataGridViewTextBoxColumn { DataPropertyName = "id", HeaderText = "ID"},
-                new DataGridViewTextBoxColumn { DataPropertyName = "assunto", HeaderText = "Assunto"},
-                new DataGridViewTextBoxColumn { DataPropertyName = "dataCompromisso", HeaderText = "DataCompromisso"},
-                new DataGridViewTextBoxColumn { DataPropertyName = "inicio", HeaderText = "Inicio"},
-                new DataGridViewTextBoxColumn { DataPropertyName = "termino", HeaderText = "Termino"},
-                new DataGridViewTextBoxColumn { DataPropertyName = "contato", HeaderText = "Contato"},
-                new DataGridViewTextBoxColumn { DataPropertyName = "localizacao", HeaderText = "Localizacao"},
-                new DataGridViewTextBoxColumn { DataPropertyName = "local", HeaderText = "Local"},
-            };
-
-            grid.Columns.AddRange(colunas);
+            
+            grid.Columns.AddRange(GerarColunas());
+            grid.ConfugrarGrid();
+            grid.ConfigurarGridZebrado();
         }
+
 
         public void AtualizarRegistros(List<Compromisso> compromissos)
         {
@@ -41,15 +33,31 @@ namespace eAgenda.WinApp.ModuloCompromisso
                 grid.Rows.Add
                     (
                     compromisso.Id,compromisso.Assunto,compromisso.DataCompromisso,
-                    compromisso.Inicio,compromisso.Termino,compromisso.Contato,
+                    compromisso.Inicio,compromisso.Termino,compromisso.Contato.ToTitleCase(),
                     compromisso.Localização,compromisso.Local
                     );
             }
         }
 
-        public Compromisso ObterRegistroSelecionado()
+        public int ObterRegistroSelecionado()
         {
-            return null;
+            return grid.SelecionarId();
         }
+
+        private static DataGridViewColumn[] GerarColunas()
+        {
+            return new DataGridViewColumn[]
+            {
+                new DataGridViewTextBoxColumn { DataPropertyName = "id", HeaderText = "ID"},
+                new DataGridViewTextBoxColumn { DataPropertyName = "assunto", HeaderText = "Assunto"},
+                new DataGridViewTextBoxColumn { DataPropertyName = "dataCompromisso", HeaderText = "DataCompromisso"},
+                new DataGridViewTextBoxColumn { DataPropertyName = "inicio", HeaderText = "Inicio"},
+                new DataGridViewTextBoxColumn { DataPropertyName = "termino", HeaderText = "Termino"},
+                new DataGridViewTextBoxColumn { DataPropertyName = "contato", HeaderText = "Contato"},
+                new DataGridViewTextBoxColumn { DataPropertyName = "localizacao", HeaderText = "Localizacao"},
+                new DataGridViewTextBoxColumn { DataPropertyName = "local", HeaderText = "Local"},
+            };
+        }
+
     }
 }

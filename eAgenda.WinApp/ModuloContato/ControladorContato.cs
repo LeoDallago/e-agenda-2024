@@ -46,9 +46,9 @@ namespace eAgenda.WinApp.ModuloContato
         {
             TelaContatoForm telaContato = new TelaContatoForm();
 
-            Contato contatoSelecionado = tabelaContato.ObterRegistroSelecionado();
+            int idSelecionado = tabelaContato.ObterRegistroSelecionado();
 
-            if (contatoSelecionado == null)
+            if (idSelecionado == null)
             {
                 MessageBox.Show("Por favor, selecione um registro",
                     "Atenção",
@@ -58,7 +58,7 @@ namespace eAgenda.WinApp.ModuloContato
                 return;
             }
 
-            telaContato.Contato = contatoSelecionado;
+            telaContato.Contato = repositorioContato.SelecionarPorId(idSelecionado);
 
             DialogResult resultado = telaContato.ShowDialog();
 
@@ -69,20 +69,20 @@ namespace eAgenda.WinApp.ModuloContato
 
             Contato contadoEditado = telaContato.Contato;
 
-            repositorioContato.Editar(contatoSelecionado.Id, contadoEditado);
+            repositorioContato.Editar(idSelecionado, contadoEditado);
 
             CarregarContatos();
 
             TelaPrincipalForm
                 .Instancia
-                .AtualizarRodape($"Cadastro \"{contatoSelecionado.Id}\" , \"{contadoEditado.Nome}\" editado com sucesso!");
+                .AtualizarRodape($"Cadastro \"{idSelecionado}\" , \"{contadoEditado.Nome}\" editado com sucesso!");
         }
 
         public override void Excluir()
         {
-            Contato contadoSelecionado = tabelaContato.ObterRegistroSelecionado();
+           int idSelecionado = tabelaContato.ObterRegistroSelecionado();
 
-            if (contadoSelecionado == null)
+            if (idSelecionado == null)
             {
                 MessageBox.Show("Por favor, selecione um registro",
                     "Atenção",
@@ -93,7 +93,7 @@ namespace eAgenda.WinApp.ModuloContato
             }
 
             DialogResult resposta =  MessageBox.Show(
-                $"Você realmente deseja excluir \"{contadoSelecionado.Nome}\"?  ",
+                $"Você realmente deseja excluir \"{idSelecionado}\"?  ",
                 "Confirmar Exclusão",
                 MessageBoxButtons.YesNo,
                 MessageBoxIcon.Warning
@@ -103,7 +103,7 @@ namespace eAgenda.WinApp.ModuloContato
                 return;
 
 
-            repositorioContato.Excluir(contadoSelecionado.Id);
+            repositorioContato.Excluir(idSelecionado);
 
             CarregarContatos();
 
