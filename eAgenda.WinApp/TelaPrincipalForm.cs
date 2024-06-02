@@ -1,6 +1,7 @@
 using eAgenda.WinApp.Compartilhado;
 using eAgenda.WinApp.ModuloCompromisso;
 using eAgenda.WinApp.ModuloContato;
+using eAgenda.WinApp.ModuloTarefa;
 
 namespace eAgenda.WinApp
 {
@@ -10,6 +11,7 @@ namespace eAgenda.WinApp
 
         RepositorioContato repositorioContato;
         RepositorioCompromisso repositorioCompromisso;
+        RepositorioTarefa repositorioTarefa;
 
         public static TelaPrincipalForm Instancia { get; private set; }
 
@@ -20,6 +22,7 @@ namespace eAgenda.WinApp
 
             repositorioContato = new RepositorioContato();
             repositorioCompromisso = new RepositorioCompromisso();
+            repositorioTarefa = new RepositorioTarefa();
 
             TelaPrincipalForm.Instancia = this;
         }
@@ -43,6 +46,13 @@ namespace eAgenda.WinApp
             ConfigurarTelaPrincipal(controlador);
         }
 
+        private void tarefasMenuItem_Click(object sender, EventArgs e)
+        {
+            controlador = new ControladorTarefa(repositorioTarefa);
+
+            ConfigurarTelaPrincipal(controlador);
+        }
+
         private void btnAdicionar_Click(object sender, EventArgs e)
         {
             controlador.Adicionar();
@@ -60,7 +70,7 @@ namespace eAgenda.WinApp
 
         private void btnFiltrar_Click(object sender, EventArgs e)
         {
-            if(controlador is IControladorFiltravel controladorFiltravel)
+            if (controlador is IControladorFiltravel controladorFiltravel)
                 controladorFiltravel.Filtrar();
         }
 
@@ -89,7 +99,7 @@ namespace eAgenda.WinApp
             btnEditar.ToolTipText = controladorSelecionado.ToolTipEditar;
             btnExcluir.ToolTipText = controladorSelecionado.ToolTipExcluir;
 
-            if(controladorSelecionado is IControladorFiltravel controladorFiltravel)
+            if (controladorSelecionado is IControladorFiltravel controladorFiltravel)
             {
                 btnFiltrar.ToolTipText = controladorFiltravel.ToolTipFiltrar;
             }
@@ -103,5 +113,6 @@ namespace eAgenda.WinApp
             pnlRegistros.Controls.Add(listagemContato);
         }
 
+      
     }
 }
