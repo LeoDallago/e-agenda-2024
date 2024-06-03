@@ -46,7 +46,7 @@ namespace eAgenda.WinApp
             ConfigurarTelaPrincipal(controlador);
         }
 
-        private void tarefasMenuItem_Click(object sender, EventArgs e)
+        private void tarefasMenuItem_Click_1(object sender, EventArgs e)
         {
             controlador = new ControladorTarefa(repositorioTarefa);
 
@@ -112,7 +112,5 @@ namespace eAgenda.WinApp
             pnlRegistros.Controls.Clear();
             pnlRegistros.Controls.Add(listagemContato);
         }
-
-      
     }
 }

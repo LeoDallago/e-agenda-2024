@@ -13,16 +13,43 @@
         public void AtualizarRegistros (List<Tarefa> tarefas)
         {
             listTarefas.Items.Clear();
+            listTarefas.Groups.Clear();
 
-            foreach (Tarefa tarefa in tarefas)
+          var tarefasAgrupadas = tarefas.GroupBy(t => t.Prioridade);
+
+            foreach (var item in tarefasAgrupadas)
             {
-                ListViewItem item = new ListViewItem(tarefa.Id.ToString());
+                ListViewGroup listViewGroup = new ListViewGroup($"Prioridade {item.Key}", HorizontalAlignment.Left);
 
-                item.SubItems.Add(tarefa.Titulo);
-                item.SubItems.Add(tarefa.DataCriacao.ToShortDateString());
+                listTarefas.Groups.Add(listViewGroup);
 
-                listTarefas.Items.Add(item);
+                foreach (Tarefa tarefa in item)
+                {
+                    ListViewItem subItem = new ListViewItem(tarefa.Id.ToString())
+                    {
+                        Tag = tarefa,                    
+                    };
+
+                    subItem.SubItems.Add(tarefa.Titulo);
+                    subItem.SubItems.Add(tarefa.DataCriacao.ToShortDateString());
+
+                    subItem.Group = listViewGroup;
+
+                     listTarefas.Items.Add(subItem);
+                }
+
             }
+
+        }
+
+        public int ObterIdSelecionado()
+        {
+            if(listTarefas.SelectedItems.Count == 0)
+                return -1;
+
+            var tarefaSelecionada =  (Tarefa)listTarefas.SelectedItems[0].Tag;
+
+            return tarefaSelecionada.Id;
         }
 
         private void GerarColunas()

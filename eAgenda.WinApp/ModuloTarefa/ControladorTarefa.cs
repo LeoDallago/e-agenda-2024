@@ -28,17 +28,81 @@ namespace eAgenda.WinApp.ModuloTarefa
 
         public override void Adicionar()
         {
-            throw new NotImplementedException();
+            TelaTarefaForm telaTarefa = new TelaTarefaForm();
+
+            DialogResult resultado = telaTarefa.ShowDialog();
+
+            // Guarda
+            if (resultado != DialogResult.OK)
+                return;
+
+            Tarefa novaTarefa = telaTarefa.Tarefa;
+
+            repositorioTarefa.Cadastrar(novaTarefa);
+
+            CarregarTarefas();
         }
 
         public override void Editar()
         {
-            throw new NotImplementedException();
+            TelaTarefaForm telaTarefa = new TelaTarefaForm();
+
+            int idSelecionado = listTarefas.ObterIdSelecionado();
+
+            if (idSelecionado == null)
+            {
+                MessageBox.Show("Por favor, selecione uma tarefa",
+                    "Atenção",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information
+                    );
+                return;
+            }
+
+            telaTarefa.Tarefa = repositorioTarefa.SelecionarPorId(idSelecionado);
+
+            DialogResult resultado = telaTarefa.ShowDialog();
+
+            //Guarda
+            if (resultado != DialogResult.OK)
+                return;
+
+
+            Tarefa tarefaEditda = telaTarefa.Tarefa;
+
+            repositorioTarefa.Editar(idSelecionado, tarefaEditda);
+
+            CarregarTarefas();
         }
 
         public override void Excluir()
         {
-            throw new NotImplementedException();
+           int idSelecionado = listTarefas.ObterIdSelecionado();
+
+            if (idSelecionado == null)
+            {
+                MessageBox.Show("Por favor, selecione uma tarefa",
+                    "Atenção",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information
+                    );
+                return;
+            }
+
+            DialogResult resposta =  MessageBox.Show(
+                $"Você realmente deseja excluir \"{idSelecionado}\"?  ",
+                "Confirmar Exclusão",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Warning
+                );
+
+            if( resposta != DialogResult.Yes )
+                return;
+
+
+            repositorioTarefa.Excluir(idSelecionado);
+
+            CarregarTarefas();
         }
 
         private void CarregarTarefas()

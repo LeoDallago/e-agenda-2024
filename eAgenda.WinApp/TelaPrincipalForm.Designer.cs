@@ -86,6 +86,7 @@
             tarefasMenuItem.Name = "tarefasMenuItem";
             tarefasMenuItem.Size = new Size(180, 24);
             tarefasMenuItem.Text = "Tarefas";
+            tarefasMenuItem.Click += tarefasMenuItem_Click_1;
             // 
             // statusStrip1
             // 
