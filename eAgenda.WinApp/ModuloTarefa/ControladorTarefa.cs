@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace eAgenda.WinApp.ModuloTarefa
 {
-    public class ControladorTarefa : ControladorBase
+    public class ControladorTarefa : ControladorBase,IControladorSubItens
     {
         private TabelaTarefaControl listTarefas;
         private RepositorioTarefa repositorioTarefa;
@@ -25,6 +25,8 @@ namespace eAgenda.WinApp.ModuloTarefa
         public override string ToolTipEditar { get { return "Editar uma tarefa"; } }
 
         public override string ToolTipExcluir { get { return "Excluir uma tarefa"; } }
+
+        public string ToolTipItens  { get { return "Adicionar item"; } }
 
         public override void Adicionar()
         {
@@ -105,6 +107,37 @@ namespace eAgenda.WinApp.ModuloTarefa
             CarregarTarefas();
         }
 
+        public void AdicionarItens()
+        {
+            int idSelecionado = listTarefas.ObterIdSelecionado();
+
+            Tarefa tarefaSelecionada = repositorioTarefa.SelecionarPorId(idSelecionado);
+
+            if(tarefaSelecionada == null)
+            {
+                    MessageBox.Show("Por favor, selecione uma tarefa",
+                        "Atenção",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information
+                        );
+                    return;
+            }
+
+            TelaCadastroItemTarefa tela = new TelaCadastroItemTarefa(tarefaSelecionada);
+
+            DialogResult resultado  = tela.ShowDialog();
+
+            if (resultado != DialogResult.OK)
+                return;
+
+            List<ItemTarefa> itens = tela.ItensAdicionados;
+
+            repositorioTarefa.AdicionarItens(tarefaSelecionada, itens);
+
+            CarregarTarefas();
+
+        }
+
         private void CarregarTarefas()
         {
             List<Tarefa> tarefas = repositorioTarefa.SelecionarTodos();
@@ -121,5 +154,6 @@ namespace eAgenda.WinApp.ModuloTarefa
 
             return listTarefas;
         }
+
     }
 }
