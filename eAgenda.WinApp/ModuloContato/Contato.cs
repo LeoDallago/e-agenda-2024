@@ -19,6 +19,11 @@ namespace eAgenda.WinApp.ModuloContato
             Cargo = cargo;
         }
 
+        public Contato()
+        {
+            
+        }
+
         public override List<string> Validar()
         {
             List<string> erros = new List<string>();

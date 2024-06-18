@@ -9,8 +9,8 @@ namespace eAgenda.WinApp
     {
         ControladorBase controlador;
 
-        RepositorioContato repositorioContato;
-        RepositorioCompromisso repositorioCompromisso;
+        IRepositorioContato repositorioContato;
+        IRepositorioCompromisso repositorioCompromisso;
         RepositorioTarefa repositorioTarefa;
 
         public static TelaPrincipalForm Instancia { get; private set; }
@@ -20,8 +20,8 @@ namespace eAgenda.WinApp
             InitializeComponent();
             lblTipoCadastro.Text = string.Empty;
 
-            repositorioContato = new RepositorioContato();
-            repositorioCompromisso = new RepositorioCompromisso();
+            repositorioContato = new RepositorioContatoEmArquivo();
+            repositorioCompromisso = new RepositorioCompromissoEmArquivo();
             repositorioTarefa = new RepositorioTarefa();
 
             TelaPrincipalForm.Instancia = this;

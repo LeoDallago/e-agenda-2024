@@ -10,10 +10,10 @@ namespace eAgenda.WinApp.ModuloCompromisso
 {
     public class ControladorCompromisso : ControladorBase, IControladorFiltravel
     {
-        private RepositorioCompromisso repositorioCompromisso;
+        private IRepositorioCompromisso repositorioCompromisso;
         private TabelaCompromissoControl tabelaCompromisso;
 
-        public ControladorCompromisso(RepositorioCompromisso repositorio)
+        public ControladorCompromisso(IRepositorioCompromisso repositorio)
         {
             repositorioCompromisso = repositorio;
         }

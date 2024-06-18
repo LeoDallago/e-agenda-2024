@@ -45,6 +45,11 @@ namespace eAgenda.WinApp.ModuloCompromisso
             Localização = TipoCompromisso.ToString();
         }
 
+        public Compromisso()
+        {
+            
+        }
+
         public override List<string> Validar()
         {
             List<string> erros = new List<string>();

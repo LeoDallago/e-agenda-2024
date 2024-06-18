@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace eAgenda.WinApp.ModuloTarefa
 {
-    public class RepositorioTarefa : RepositorioBase<Tarefa>
+    public class RepositorioTarefa : RepositorioBaseEmMemoria<Tarefa>
     {
         public void AdicionarItens(Tarefa tarefaSelecionada, List<ItemTarefa> itens)
         {
