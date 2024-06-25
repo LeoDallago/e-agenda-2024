@@ -20,8 +20,8 @@ namespace eAgenda.WinApp
             InitializeComponent();
             lblTipoCadastro.Text = string.Empty;
 
-            repositorioContato = new RepositorioContatoEmArquivo();
-            repositorioCompromisso = new RepositorioCompromissoEmArquivo();
+            repositorioContato = new RepositorioContatoEmSQL();
+            repositorioCompromisso = new RepositorioCompromissoSQL();
             repositorioTarefa = new RepositorioTarefa();
 
             TelaPrincipalForm.Instancia = this;
