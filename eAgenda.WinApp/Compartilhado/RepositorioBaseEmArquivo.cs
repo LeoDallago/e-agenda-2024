@@ -24,6 +24,11 @@ namespace eAgenda.WinApp.Compartilhado
             caminho = $"C:\\temp\\eAgenda\\{nomeArquivo}.json";
 
             registros = DeserealizarRegistros();
+
+            if (registros.Count > 0)
+            {
+                contadorId = registros.Max(r => r.Id) + 1;
+            }
         }
 
         public void Cadastrar(T novoRegistro)

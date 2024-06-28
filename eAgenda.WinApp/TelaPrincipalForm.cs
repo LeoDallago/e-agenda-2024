@@ -14,6 +14,7 @@ namespace eAgenda.WinApp
         IRepositorioCompromisso repositorioCompromisso;
         RepositorioTarefa repositorioTarefa;
         IRepositorioCategoria repositorioCategoria;
+        IRepositorioDespesa repositorioDespesa;
 
         public static TelaPrincipalForm Instancia { get; private set; }
 
@@ -26,6 +27,7 @@ namespace eAgenda.WinApp
             repositorioCompromisso = new RepositorioCompromissoEmArquivo();
             repositorioTarefa = new RepositorioTarefa();
             repositorioCategoria = new RepositorioCatagoriaEmArquivo();
+            repositorioDespesa = new RepositorioDespesaEmArquivo();
 
             TelaPrincipalForm.Instancia = this;
         }
@@ -59,6 +61,13 @@ namespace eAgenda.WinApp
         private void categoriaToolStripMenuItem_Click(object sender, EventArgs e)
         {
             controlador = new ControladorCategoria(repositorioCategoria);
+
+            ConfigurarTelaPrincipal(controlador);
+        }
+
+        private void despesasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            controlador = new ControladorDespesa(repositorioDespesa,repositorioCategoria);
 
             ConfigurarTelaPrincipal(controlador);
         }
@@ -134,6 +143,5 @@ namespace eAgenda.WinApp
             pnlRegistros.Controls.Add(listagemContato);
         }
 
-      
     }
 }

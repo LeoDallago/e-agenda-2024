@@ -1,11 +1,4 @@
 ﻿using eAgenda.ConsoleApp.Compartilhado;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
 
 namespace eAgenda.WinApp.ModuloDespesa
 {
@@ -13,6 +6,8 @@ namespace eAgenda.WinApp.ModuloDespesa
     {
 
         public string Titulo { get; set; }
+
+        public List<Despesa> Despesas = new List<Despesa>();
 
         public Categoria() { }
 
@@ -37,6 +32,32 @@ namespace eAgenda.WinApp.ModuloDespesa
                 erros.Add("O campo \"TITULO\" é obrigatório");
 
             return erros;
+        }
+
+        public void RegistrarDespesa(Despesa despesa)
+        {
+           if(!Despesas.Any(d => d.Id == despesa.Id))
+                return;
+
+           Despesas.Add(despesa);
+            despesa.AtribuirCategoria(this);
+        }
+
+        public void RemoverDespesa(Despesa despesa)
+        {
+            if (!Despesas.Any(c => c.Id == despesa.Id))
+                return;
+
+            Despesa despesaSelecionada = Despesas.Find(c => c.Id == despesa.Id);
+
+            Despesas.Remove(despesaSelecionada);
+
+           despesa.RemoverCategoria(this);
+        }
+
+        public override string ToString()
+        {
+            return Titulo;
         }
     }
 
