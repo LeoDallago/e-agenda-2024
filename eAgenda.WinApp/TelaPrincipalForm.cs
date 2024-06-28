@@ -1,6 +1,7 @@
 using eAgenda.WinApp.Compartilhado;
 using eAgenda.WinApp.ModuloCompromisso;
 using eAgenda.WinApp.ModuloContato;
+using eAgenda.WinApp.ModuloDespesa;
 using eAgenda.WinApp.ModuloTarefa;
 
 namespace eAgenda.WinApp
@@ -12,6 +13,7 @@ namespace eAgenda.WinApp
         IRepositorioContato repositorioContato;
         IRepositorioCompromisso repositorioCompromisso;
         RepositorioTarefa repositorioTarefa;
+        IRepositorioCategoria repositorioCategoria;
 
         public static TelaPrincipalForm Instancia { get; private set; }
 
@@ -23,6 +25,7 @@ namespace eAgenda.WinApp
             repositorioContato = new RepositorioContatoEmArquivo();
             repositorioCompromisso = new RepositorioCompromissoEmArquivo();
             repositorioTarefa = new RepositorioTarefa();
+            repositorioCategoria = new RepositorioCatagoriaEmArquivo();
 
             TelaPrincipalForm.Instancia = this;
         }
@@ -49,6 +52,13 @@ namespace eAgenda.WinApp
         private void tarefasMenuItem_Click_1(object sender, EventArgs e)
         {
             controlador = new ControladorTarefa(repositorioTarefa);
+
+            ConfigurarTelaPrincipal(controlador);
+        }
+
+        private void categoriaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            controlador = new ControladorCategoria(repositorioCategoria);
 
             ConfigurarTelaPrincipal(controlador);
         }
@@ -109,11 +119,11 @@ namespace eAgenda.WinApp
 
             if (controladorSelecionado is IControladorFiltravel controladorFiltravel)
                 btnFiltrar.ToolTipText = controladorFiltravel.ToolTipFiltrar;
-            
+
 
             if (controladorSelecionado is IControladorSubItens controladorSubItens)
                 btnFiltrar.ToolTipText = controladorSubItens.ToolTipItens;
-            
+
         }
         private void ConfigurarListagem(ControladorBase controladorSelecionado)
         {
@@ -124,5 +134,6 @@ namespace eAgenda.WinApp
             pnlRegistros.Controls.Add(listagemContato);
         }
 
+      
     }
 }

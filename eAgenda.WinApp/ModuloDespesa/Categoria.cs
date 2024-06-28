@@ -39,5 +39,5 @@ namespace eAgenda.WinApp.ModuloDespesa
             return erros;
         }
     }
-    // continuar depois de salvar em arquivos
+
 }
