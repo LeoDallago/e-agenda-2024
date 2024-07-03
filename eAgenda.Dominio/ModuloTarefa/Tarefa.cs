@@ -43,6 +43,11 @@ namespace eAgenda.WinApp.ModuloTarefa
             Itens = new List<ItemTarefa>();
         }
 
+        public Tarefa()
+        {
+            
+        }
+
         public bool AdicionarItem(ItemTarefa item)
         {
             if(Itens.Exists(i => i.Titulo == item.Titulo))  
