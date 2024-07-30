@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
+    <data-source source="LOCAL" name="eAgendaDb" uuid="fcc79258-5ad0-4b5d-b89d-5786b7c4c7d9">
+      <driver-ref>sqlserver.localdb.jb</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.jetbrains.jdbc.sqlserver.SqlServerDriver</jdbc-driver>
+      <jdbc-url>Server=(localdb)\MSSQLLocalDB;Database=eAgendaDb</jdbc-url>
+      <jdbc-additional-properties>
+        <property name="LOCAL_DB_INSTANCE" value="MSSQLLocalDB" />
+      </jdbc-additional-properties>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
+  </component>
+</project>
